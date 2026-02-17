@@ -1,0 +1,63 @@
+{
+    "info": {
+        "name": "HubSpot Contacts",
+        "_postman_id": "sample-collection",
+        "description": "Sample HubSpot API request for testing the Postman-to-ODC converter",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Search Contacts",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{hubspot_api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"filterGroups\": [\n        {\n            \"filters\": [\n                {\n                    \"propertyName\": \"createdate\",\n                    \"operator\": \"BETWEEN\",\n                    \"value\": \"{{startDate}}\",\n                    \"highValue\": \"{{endDate}}\"\n                }\n            ]\n        }\n    ],\n    \"properties\": [\"firstname\", \"lastname\", \"email\", \"company\", \"country\"],\n    \"limit\": 100\n}"
+                },
+                "url": {
+                    "raw": "https://api.hubapi.com/crm/v3/objects/contacts/search",
+                    "protocol": "https",
+                    "host": ["api", "hubapi", "com"],
+                    "path": ["crm", "v3", "objects", "contacts", "search"]
+                }
+            }
+        },
+        {
+            "name": "Get Contact by ID",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{hubspot_api_key}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "https://api.hubapi.com/crm/v3/objects/contacts/{{contact_id}}?properties=firstname,lastname,email",
+                    "protocol": "https",
+                    "host": ["api", "hubapi", "com"],
+                    "path": ["crm", "v3", "objects", "contacts", "{{contact_id}}"],
+                    "query": [
+                        {
+                            "key": "properties",
+                            "value": "firstname,lastname,email"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
