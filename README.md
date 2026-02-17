@@ -1,3 +1,5 @@
+# [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support-yellow?logo=buy-me-a-coffee)](https://buymeacoffee.com/succinctrecords)
+
 # Postman to ODC Converter
 
 Convert Postman API requests to Excel ODC (Office Data Connection) files for use with Power Query.
